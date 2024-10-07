@@ -1,25 +1,111 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { ChevronRight, Calendar, Users, Award, MapPin, Phone, Mail } from 'lucide-react';
 
-function App() {
+const app = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="font-sans text-gray-800 bg-gray-100 min-h-screen bg-[url('/api/placeholder/1920/1080?text=Subtle+Background')] bg-fixed bg-cover">
+      {/* Header */}
+      <header className="bg-white bg-opacity-90 shadow-md rounded-b-lg">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <img src="/api/placeholder/150/50" alt="Red Fish Neuchâtel Logo" className="h-12" />
+          <nav>
+            <ul className="flex space-x-6">
+              {['Accueil', 'Le Club', 'Activités', 'Contact'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-gray-600 hover:text-blue-600 transition duration-300 hover:bg-gray-200 px-2 py-1 rounded">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </header>
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-20 rounded-lg shadow-xl mx-4 my-8">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl font-bold mb-4">Bienvenue chez Red Fish Neuchâtel</h1>
+          <p className="text-xl mb-8">Votre club de natation depuis 1917</p>
+          <a href="#" className="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-gray-200 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+            En savoir plus <ChevronRight className="inline" />
+          </a>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {[
+              { icon: Calendar, title: "Événements", description: "Découvrez nos prochaines compétitions et activités" },
+              { icon: Users, title: "Nos cours", description: "Des cours pour tous les âges et tous les niveaux" },
+              { icon: Award, title: "Nos champions", description: "Découvrez les performances de nos athlètes" }
+            ].map((feature, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 text-center group">
+                <div className="bg-blue-100 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition duration-300">
+                  <feature.icon className="text-blue-600" size={36} />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="bg-gray-200 py-16 rounded-lg shadow-xl mx-4 my-8">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Rejoignez-nous aujourd'hui</h2>
+          <p className="text-xl mb-8">Devenez membre de notre club et excellez dans la natation</p>
+          <a href="#" className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+            S'inscrire maintenant
+          </a>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold mb-8 text-center">Contactez-nous</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-xl shadow-lg p-8">
+            <div>
+              <form className="space-y-4">
+                <input type="text" placeholder="Nom" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 transition duration-300" />
+                <input type="email" placeholder="Email" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 transition duration-300" />
+                <textarea placeholder="Message" rows="4" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 transition duration-300"></textarea>
+                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                  Envoyer
+                </button>
+              </form>
+            </div>
+            <div className="space-y-4">
+              {[
+                { icon: MapPin, text: "Route des Falaises 30, 2000 Neuchâtel" },
+                { icon: Phone, text: "+41 32 000 00 00" },
+                { icon: Mail, text: "info@redfishneuchatel.ch" }
+              ].map((item, index) => (
+                <div key={index} className="flex items-center group">
+                  <div className="bg-blue-100 rounded-full p-2 mr-4 group-hover:bg-blue-200 transition duration-300">
+                    <item.icon className="text-blue-600" />
+                  </div>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-8 rounded-t-lg">
+        <div className="container mx-auto px-4 text-center">
+          <p>&copy; 2024 Red Fish Neuchâtel. Tous droits réservés.</p>
+        </div>
+      </footer>
     </div>
   );
-}
+};
 
-export default App;
+export default app;
