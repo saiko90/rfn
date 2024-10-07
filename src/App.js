@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronRight, Calendar, Users, Award, MapPin, Phone, Mail } from 'lucide-react';
 
-const app = () => {
+const App = () => {
   return (
     <div className="font-sans text-gray-800 bg-gray-100 min-h-screen bg-[url('/api/placeholder/1920/1080?text=Subtle+Background')] bg-fixed bg-cover">
       {/* Header */}
@@ -12,7 +12,7 @@ const app = () => {
             <ul className="flex space-x-6">
               {['Accueil', 'Le Club', 'Activités', 'Contact'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-gray-600 hover:text-blue-600 transition duration-300 hover:bg-gray-200 px-2 py-1 rounded">
+                  <a href={`/${item.toLowerCase().replace(' ', '-')}`} className="text-gray-600 hover:text-blue-600 transition duration-300 hover:bg-gray-200 px-2 py-1 rounded">
                     {item}
                   </a>
                 </li>
@@ -27,9 +27,9 @@ const app = () => {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-4">Bienvenue chez Red Fish Neuchâtel</h1>
           <p className="text-xl mb-8">Votre club de natation depuis 1917</p>
-          <a href="#" className="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-gray-200 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+          <button onClick={() => {/* Ajouter la logique pour en savoir plus */}} className="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-gray-200 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
             En savoir plus <ChevronRight className="inline" />
-          </a>
+          </button>
         </div>
       </section>
 
@@ -59,9 +59,9 @@ const app = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Rejoignez-nous aujourd'hui</h2>
           <p className="text-xl mb-8">Devenez membre de notre club et excellez dans la natation</p>
-          <a href="#" className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+          <button onClick={() => {/* Ajouter la logique d'inscription */}} className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
             S'inscrire maintenant
-          </a>
+          </button>
         </div>
       </section>
 
@@ -71,7 +71,7 @@ const app = () => {
           <h2 className="text-3xl font-bold mb-8 text-center">Contactez-nous</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-xl shadow-lg p-8">
             <div>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); /* Ajouter la logique d'envoi du formulaire */ }}>
                 <input type="text" placeholder="Nom" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 transition duration-300" />
                 <input type="email" placeholder="Email" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 transition duration-300" />
                 <textarea placeholder="Message" rows="4" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 transition duration-300"></textarea>
@@ -101,11 +101,11 @@ const app = () => {
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8 rounded-t-lg">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 Red Fish Neuchâtel. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} Red Fish Neuchâtel. Tous droits réservés.</p>
         </div>
       </footer>
     </div>
   );
 };
 
-export default app;
+export default App;
